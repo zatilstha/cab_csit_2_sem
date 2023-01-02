@@ -1,0 +1,119 @@
+:root {
+    --green: #198754;
+    --gray: #adb5bd;
+    --dark: #212529;
+    --white: white;
+    --red: #dc3545;
+    --yellow: #ffc107;
+}
+
+/*Tags*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+p{
+    font-size: 16px;
+}
+
+button {
+    padding: 14px 20px;
+    border-radius: 6px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    width: auto;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/*GLOBAL CLASSES*/
+.container {
+    padding: 20px 50px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/*Backgrounds*/
+.bg-green {
+    background: var(--green);
+}
+
+.bg-white {
+    background: var(--white);
+}
+
+.bg-gray {
+    background: var(--gray);
+}
+
+.bg-red {
+    background: var(--red);
+}
+
+.bg-yellow {
+    background: var(--yellow);
+}
+
+/*Colors*/
+.color-white {
+    color: var(--white);
+}
+
+.color-dark {
+    color: var(--dark);
+}
+
+.color-gray {
+    color: var(--gray);
+}
+
+.color-green {
+    color: var(--green);
+}
+
+.color-red {
+    color: var(--red);
+}
+
+.color-yellow {
+    color: var(--yellow);
+}
+
+/*Margins*/
+.mt-10{
+    margin-top: 10px;
+}
+
+
+/*Fonts*/
+.font-20{
+    font-size: 20px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+/*OTHERS*/
+.login-box {
+    border-radius: 10px;
+    width: 40%;
+    padding: 25px 35px;
+    margin: 10% auto auto;
+}
+
