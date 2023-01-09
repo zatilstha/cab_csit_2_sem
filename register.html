@@ -12,6 +12,8 @@
     <div class="login-box bg-green color-white">
         <div class="text-center">
             <p class="font-20">Register Page</p>
+
+            <div id="errors"></div>
         </div>
         <form id="registerForm">
             <div>
@@ -45,71 +47,104 @@
 <!--The integrity attribute allows a browser to check the fetched script to ensure that the code is never loaded if the source has been manipulated.-->
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
+
 <script>
-    $(document).ready(function () {
-        console.log('DOM is loaded!')
-    })
+    let errorArray
+    $('#registerForm').submit(function (event) {
+        event.preventDefault()
+        errorArray = []
 
-    $('#registerForm').submit(function (e) {
-        e.preventDefault()
-
-        if (validateForm()){
-            console.log('Post form')
-        }else console.log('Validation errors')
-    })
-
-    function validateForm() {
         const name = $('#name').val()
         const email = $('#email').val()
-        const phone = $('#phone').val()
         const password = $('#password').val()
+        const phone = $('#phone').val()
+        console.log(name, email, password, phone)
 
-        let errorCount = 0
-        $('.color-red').remove()
+        if (!name) errorArray.push('Name field is required!')
+        if (!email) errorArray.push('Email field is required!')
 
-        if (!name) {
-            errorCount++
-            $('#name').after(getErrorHtml('Please enter name!'))
-        } else $('#name').next($('.color-red')).remove()
+        if (!phone) errorArray.push('Phone field is required!')
+        else if (phone.length !== 10) errorArray.push('Enter 10 digit valid phone number!')
 
+        if (!password) errorArray.push('Password field is required!')
 
-        if (!email) {
-            errorCount++
-            $('#email').after(getErrorHtml('Please enter email!'))
-        } else $('#email').next($('.color-red')).remove()
+        console.log(errorArray)
 
+        let errorStrings = '<ul>'
+        errorArray.forEach(value => {
+            errorStrings += '<li>'+value+'</li>'
+        })
+        errorStrings += '</ul>'
 
-        if (!phone) {
-            errorCount++
-            $('#phone').after(getErrorHtml('Please enter number!'))
-        }
-        else if (phone.length !== 10){
-            errorCount++
-            $('#phone').after(getErrorHtml('Please enter 10 digit valid number!'))
-        }
-        else $('#phone').next($('.color-red')).remove()
+        console.log(errorStrings)
+        $('#errors').empty().append(errorStrings)
 
+        console.log('Form submit')
+    })
+</script>
 
-        if (!password) {
-            errorCount++
-            $('#password').after(getErrorHtml('Please enter password!'))
-        }
-        else {
-            const specialChars = ['@', '#']
-
-            if (!specialChars.some(character => password.includes(character))){
-                errorCount++
-                $('#password').after(getErrorHtml('Please include special character in password!'))
-            }
-            else $('#password').next($('.color-red')).remove()
-        }
-
-        return !errorCount;
-    }
-
-    function getErrorHtml(message) {
-        return '<span class="color-red">' + message + '</span>'
-    }
+<script>
+    // $(document).ready(function () {
+    //     console.log('DOM is loaded!')
+    // })
+    //
+    // $('#registerForm').submit(function (e) {
+    //     e.preventDefault()
+    //
+    //     if (validateForm()){
+    //         console.log('Post form')
+    //     }else console.log('Validation errors')
+    // })
+    //
+    // function validateForm() {
+    //     const name = $('#name').val()
+    //     const email = $('#email').val()
+    //     const phone = $('#phone').val()
+    //     const password = $('#password').val()
+    //
+    //     let errorCount = 0
+    //     $('.color-red').remove()
+    //
+    //     if (!name) {
+    //         errorCount++
+    //         $('#name').after(getErrorHtml('Please enter name!'))
+    //     } else $('#name').next($('.color-red')).remove()
+    //
+    //     if (!email) {
+    //         errorCount++
+    //         $('#email').after(getErrorHtml('Please enter email!'))
+    //     } else $('#email').next($('.color-red')).remove()
+    //
+    //     if (!phone) {
+    //         errorCount++
+    //         $('#phone').after(getErrorHtml('Please enter number!'))
+    //     }
+    //     else if (phone.length !== 10){
+    //         errorCount++
+    //         $('#phone').after(getErrorHtml('Please enter 10 digit valid number!'))
+    //     }
+    //     else $('#phone').next($('.color-red')).remove()
+    //
+    //     if (!password) {
+    //         errorCount++
+    //         $('#password').after(getErrorHtml('Please enter password!'))
+    //     }
+    //     else {
+    //         const specialChars = ['@', '#']
+    //
+    //         if (!specialChars.some(character => password.includes(character))){
+    //             errorCount++
+    //             $('#password').after(getErrorHtml('Please include special character in password!'))
+    //         }
+    //         else $('#password').next($('.color-red')).remove()
+    //     }
+    //
+    //     return !errorCount;
+    // }
+    //
+    // function getErrorHtml(message) {
+    //     return '<span class="color-red">' + message + '</span>'
+    // }
 </script>
 
 </body>

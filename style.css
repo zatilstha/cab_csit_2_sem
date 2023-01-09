@@ -117,3 +117,8 @@ button:hover {
     margin: 10% auto auto;
 }
 
+#errors {
+    text-align: left;
+    color: red;
+ }
+
